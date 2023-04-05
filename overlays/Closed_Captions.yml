@@ -1,0 +1,31 @@
+external_templates:
+  pmm: templates
+  template_variables:
+    text_<<key>>: <<text>>
+    group: captions
+    horizontal_offset: 40
+    horizontal_align: left
+    vertical_offset: 40
+    vertical_align: bottom
+    font: fonts/Inter-ExtraBold.ttf
+    font_size: 80
+    font_color: "#FFFFFF"
+    back_color: "#000000"
+    back_width: 200
+    back_height: 140
+    back_align: center
+    final_name: text(<<text_<<key>>>>)
+templates:
+  captions:
+    optional:
+      - lang
+    ignore_blank_results: true
+    plex_search:
+      all:
+        subtitle_language: <<lang>>
+overlays:
+  closed_captions:
+    variables: {key: CC, weight: 40, text: CC, lang: en}
+    template: [name: standard, name: captions]
+
+      

@@ -1,0 +1,45 @@
+external_templates:
+  pmm: templates
+  template_variables:
+    text_<<key>>: <<text>>
+    group: captions
+    horizontal_offset: 40
+    horizontal_align: left
+    vertical_offset: 40
+    vertical_align: bottom
+    font: fonts/Inter-ExtraBold.ttf
+    font_size: 80
+    font_color: "#FFFFFF"
+    back_color: <<bgcolor>>
+    back_width: 240
+    back_height: 140
+    back_align: center
+    final_name: text(<<text_<<key>>>>)
+templates:
+  captions:
+    conditionals:
+      dub_lang:
+        conditions:
+          - key: [dub, dubsub]
+            value: <<lang>>
+      sub_lang:
+        conditions:
+          - key: [sub, dubsub]
+            value: <<lang>>
+    optional:
+      - lang
+    ignore_blank_results: true
+    plex_search:
+      all:
+        audio_language: <<dub_lang>>
+        subtitle_language: <<sub_lang>>
+overlays:
+  dubsub:
+    variables: {key: dubsub, weight: 40, text: D•S, bgcolor: "#008000", lang: en}
+    template: [name: standard, name: captions]
+  dub:
+    variables: {key: dub, weight: 30, text: DUB, bgcolor: "#0000FF", lang: en}
+    template: [name: standard, name: captions]
+  sub:
+    variables: {key: sub, weight: 20, text: SUB, bgcolor: "#FF0000", lang: en}
+    template: [name: standard, name: captions]
